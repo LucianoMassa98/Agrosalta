@@ -38,13 +38,15 @@ async (req,res,next)=>{
 //create
 router.post('/',
 validatorHandler(createUsuarioSchema,'body'),
-async (req, res) => {
+async (req, res,next) => {
+try{
   const body = req.body;
   const Newusuario = await service.create(body);
   res.json({
     message: 'created',
     data: Newusuario
   });
+}catch(err){next(err);}
 });
 //update
 router.patch('/:usuarioId',

@@ -13,6 +13,22 @@ const usuarioSchema  = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  apellido: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  username: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  password: {
+    allowNull: false,
+    type: DataTypes.STRING
+  }, 
+  tipo: {
+    allowNull: false,
+    type: DataTypes.INTEGER,
+  },
   celular: {
     allowNull: false,
     type: DataTypes.STRING,
@@ -26,10 +42,6 @@ const usuarioSchema  = {
     type: DataTypes.STRING,
     unique: true,
   },
-  password: {
-    allowNull: false,
-    type: DataTypes.STRING
-  }, 
   imagen: {
     type: DataTypes.STRING,
     allowNull: true,

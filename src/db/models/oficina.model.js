@@ -31,8 +31,8 @@ class Oficina extends Model{
   // crear metodos estaticos
   static associate(models){
 
-    //this.hasMany(models.Cliente, {as: 'clientes', foreignKey: 'clienteId'});
-    this.hasMany(models.Operacion, {as: 'operaciones', foreignKey: 'operacionId'});
+    this.hasMany(models.Operacion, {as: 'operaciones', foreignKey: 'oficinaId'});
+    this.hasMany(models.Movimiento, {as: 'movimientos', foreignKey: 'oficinaId'});
     
   }
   // definir otrto estatico para la conexin

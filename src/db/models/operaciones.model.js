@@ -1,9 +1,11 @@
 const {Model,DataTypes, Sequelize} = require('sequelize');
 const {USUARIO_TABLE}=require('../models/usuario.model');
+const {CLIENTE_TABLE}=require('../models/cliente.model');
 const {CLIENTE_VEHICULO_TABLE}=require('../models/cliente-vehiculo.model');
 const {SERVICIO_TABLE}=require('../models/servicio.model');
 const {OFICINA_TABLE}=require('../models/oficina.model');
 const OPERACION_TABLE = 'operaciones';
+
 const operacionSchema  = {
   id: {
     allowNull: false,
@@ -20,7 +22,18 @@ const operacionSchema  = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+    onDelete: 'CASCADE'
+  },
+  clienteId: {
+    field: 'cliente_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: CLIENTE_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
   },
   clienteVehiculoId: {
     field: 'cliente_vehiculo_id',
@@ -31,7 +44,7 @@ const operacionSchema  = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+    onDelete: 'CASCADE'
   },
   servicioId: {
     field: 'servicio_id',
@@ -42,7 +55,7 @@ const operacionSchema  = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+    onDelete: 'CASCADE'
   },
   oficinaId: {
     field: 'oficina_id',
@@ -53,7 +66,7 @@ const operacionSchema  = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+    onDelete: 'CASCADE'
   },
   valor: {
     allowNull: false,
@@ -72,44 +85,44 @@ const operacionSchema  = {
     type: DataTypes.DATE,
   },
   sumaAsegurada: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   clausula: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   prima: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   premio: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   cotizacion: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   propuesta: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   poliza: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   endoso: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   subrogacion: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DOUBLE,
   },
   cedulaVerde: {
     allowNull: false,
-    type: DataTypes.DOUBLE,
+    type: DataTypes.STRING,
   },
   createdAt: {
     allowNull: false,
@@ -127,6 +140,7 @@ class Operacion extends Model{
     this.belongsTo(models.ClienteVehiculo, {as: 'clienteVehiculo'});
     this.belongsTo(models.Servicio, {as: 'servicio'});
     this.belongsTo(models.Oficina, {as: 'oficina'});
+    this.belongsTo(models.Cliente, {as: 'cliente'});
   
   
   }

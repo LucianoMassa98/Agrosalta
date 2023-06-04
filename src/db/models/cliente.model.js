@@ -1,6 +1,5 @@
 const {Model,DataTypes, Sequelize} = require('sequelize');
-/*const {NEGOCIO_TABLE}=require('../models/negocio.model');
-const {CUENTA_TABLE}=require('../models/cuenta.model');*/
+
 const CLIENTE_TABLE = 'clientes';
 const clienteSchema  = {
   id: {
@@ -68,16 +67,19 @@ const clienteSchema  = {
     defaultValue: Sequelize.NOW
   }
 }
-
+ 
 class Cliente extends Model{
   // crear metodos estaticos
   static associate(models){
 
-    this.hasMany(models.ClienteVehiculo, {
+    this.belongsToMany(models.Vehiculo, {
       as: 'items',
+      through: models.ClienteVehiculo,
       foreignKey: 'clienteId',
+      otherKey: 'vehiculoId'
     });
-
+    
+   this.hasMany(models.Operacion, {as: 'operaciones', foreignKey: 'clienteId'});
   }
   // definir otrto estatico para la conexin
   static config(sequelize){

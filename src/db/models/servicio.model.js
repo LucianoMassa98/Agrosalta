@@ -12,10 +12,6 @@ const servicioSchema  = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  valor: {
-    type: DataTypes.DOUBLE,
-    allowNull: false,
-  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
@@ -31,6 +27,8 @@ class Servicio extends Model{
     this.hasMany(models.Operacion, {
       as: 'operaciones',
       foreignKey: 'servicioId'});
+    this.hasMany(models.ServicioValor , { as: 'servicioValor', foreignKey: 'servicioId'});
+
    /* this.hasMany(models.Operacion , {
     as: 'operaciones',
     foreignKey: 'operacionId'

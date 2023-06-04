@@ -45,7 +45,7 @@ const clienteVehiculoSchema  = {
   },
   motor: {
     allowNull: false,
-    type: DataTypes.DOUBLE,
+    type: DataTypes.STRING,
   },
   combustible: {
     allowNull: false,
@@ -78,8 +78,6 @@ const clienteVehiculoSchema  = {
 class ClienteVehiculo extends Model{
   // crear metodos estaticos
   static associate(models){
-    this.belongsTo(models.Cliente, {as: 'cliente'});
-    this.belongsTo(models.Vehiculo, {as: 'vehiculo'});
   }
   // definir otrto estatico para la conexin
   static config(sequelize){
@@ -95,4 +93,4 @@ module.exports = {
   CLIENTE_VEHICULO_TABLE,
   clienteVehiculoSchema,
   ClienteVehiculo
-}
+} 

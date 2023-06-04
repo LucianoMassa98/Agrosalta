@@ -5,18 +5,20 @@ const service = new OficinasService();
 const  {
   createOficinaSchema,
   updateOficinaSchema,
-  getOficinaSchema
+  getOficinaSchema,
+  queryOficinaSchema
   } = require('../schemas/oficina.schema');
 
   const validatorHandler = require('../middlewares/validator.handler');
 
 
-  //find one
+  //find all
 router.get('/',
+validatorHandler(queryOficinaSchema, 'query'),
 async (req,res,next)=>{
   try{
-    
-  const oficina = await service.find();
+    const query = req.query;
+  const oficina = await service.find(query);
   res.json(oficina);
   }catch(err){
     next(err);
@@ -24,26 +26,32 @@ async (req,res,next)=>{
 });
 //find one
 router.get('/:oficinaId',
+validatorHandler(queryOficinaSchema, 'query'),
 validatorHandler(getOficinaSchema, 'params'),
 async (req,res,next)=>{
   try{
     const{oficinaId}=req.params;
-  const oficina = await service.findOne(oficinaId);
+    const query = req.query;
+  const oficina = await service.findOne(oficinaId,query);
   res.json(oficina);
   }catch(err){
     next(err);
   }
 });
+
+
+
+
 //create
 router.post('/',
 validatorHandler(createOficinaSchema,'body'),
-async (req, res) => {
-  const body = req.body;
-  const Newoficina = await service.create(body);
-  res.json({
-    message: 'created',
-    data: Newoficina
-  });
+async (req, res,next) => {
+  try{const body = req.body;
+    const Newoficina = await service.create(body);
+    res.json({
+      message: 'created',
+      data: Newoficina
+    });}catch(err){ next(err);}
 });
 //update
 router.patch('/:oficinaId',

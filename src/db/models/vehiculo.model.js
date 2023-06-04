@@ -27,10 +27,7 @@ const vehiculoSchema  = {
 class Vehiculo extends Model{
   // crear metodos estaticos
   static associate(models){
-    this.hasMany(models.ClienteVehiculo, {
-      as: 'itemsVehiculo',
-      foreignKey: 'clienteVehiculoId',
-    });
+   
 
   }
   // definir otrto estatico para la conexin

@@ -3,7 +3,8 @@ const id = joi.number().integer();
 const nombre = joi.string().min(3);
 const celular = joi.string().min(3);
 const direccion = joi.string().min(3);
-
+const desde = joi.date();
+const hasta = joi.date();
 
 const createOficinaSchema = joi.object({
  
@@ -22,9 +23,14 @@ const updateOficinaSchema = joi.object({
 const getOficinaSchema = joi.object({
   oficinaId: id.required()
 });
+const queryOficinaSchema = joi.object({
+  desde,
+  hasta
 
+});
 module.exports = {
   createOficinaSchema,
   updateOficinaSchema,
-  getOficinaSchema
+  getOficinaSchema,
+  queryOficinaSchema
   };

@@ -37,13 +37,13 @@ async (req,res,next)=>{
 //create
 router.post('/',
 validatorHandler(createVehiculoSchema,'body'),
-async (req, res) => {
-  const body = req.body;
-  const Newvehiculo = await service.create(body);
-  res.json({
-    message: 'created',
-    data: Newvehiculo
-  });
+async (req, res,next) => {
+  try{const body = req.body;
+    const Newvehiculo = await service.create(body);
+    res.json({
+      message: 'created',
+      data: Newvehiculo
+    });}catch(err){next(err);}
 });
 //update
 router.patch('/:vehiculoId',

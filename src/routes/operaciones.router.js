@@ -3,21 +3,22 @@ const router=express.Router();
 const OperacionesService = require('../services/operaciones.service');
 const service = new OperacionesService();
 const  {
-  createOperacioneSchema,
+  createOperacionSchema,
   updateOperacioneSchema,
-  getOperacioneSchema
+  getOperacionSchema,
+  queryOperacionSchema
   } = require('../schemas/operacion.schema');
 
   const validatorHandler = require('../middlewares/validator.handler');
+ 
 
-
-  //find one
+  //find 
 router.get('/',
-validatorHandler(getOperacioneSchema, 'params'),
+validatorHandler(queryOperacionSchema, 'query'),
 async (req,res,next)=>{
   try{
     
-  const operacion = await service.find();
+  const operacion = await service.find(req.query);
   res.json(operacion);
   }catch(err){
     next(err);
@@ -25,7 +26,7 @@ async (req,res,next)=>{
 });
 //find one
 router.get('/:operacionId',
-validatorHandler(getOperacioneSchema, 'params'),
+validatorHandler(getOperacionSchema, 'params'),
 async (req,res,next)=>{
   try{
     const{operacionId}=req.params;
@@ -37,18 +38,23 @@ async (req,res,next)=>{
 });
 //create
 router.post('/',
-validatorHandler(createOperacioneSchema,'body'),
-async (req, res) => {
-  const body = req.body;
-  const Newoperacion = await service.create(body);
-  res.json({
-    message: 'created',
-    data: Newoperacion
-  });
+validatorHandler(createOperacionSchema,'body'),
+async (req, res,next) => {
+  try{
+    
+    const body = req.body;
+    const Newoperacion = await service.create(body);
+    res.json({
+      message: 'created',
+      data: Newoperacion
+    });
+  }catch(err){
+    next(err);
+  }
 });
 //update
 router.patch('/:operacionId',
-validatorHandler(getOperacioneSchema,'params'),
+validatorHandler(getOperacionSchema,'params'),
 validatorHandler(updateOperacioneSchema,'body'),
 async (req, res,next) => {
   try{
@@ -63,7 +69,7 @@ async (req, res,next) => {
 });
 //delete
 router.delete('/:operacionId',
-  validatorHandler(getOperacioneSchema,'params'),
+  validatorHandler(getOperacionSchema,'params'),
   async(req, res,next) => {
   try{
     const { operacionId } = req.params;

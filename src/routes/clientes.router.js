@@ -40,13 +40,15 @@ async (req,res,next)=>{
 //create
 router.post('/',
 validatorHandler(createClienteSchema,'body'),
-async (req, res) => {
-  const body = req.body;
-  const Newcliente = await service.create(body);
-  res.json({
-    message: 'created',
-    data: Newcliente
-  });
+async (req, res,next) => {
+  try{const body = req.body;
+    const Newcliente = await service.create(body);
+    res.json({
+      message: 'created',
+      data: Newcliente
+    });}catch(err){
+      next(err);
+    }
 });
 //update
 router.patch('/:clienteId',
@@ -93,14 +95,18 @@ async (req,res,next)=>{
 //create CKIENTE-VEHICULO
 router.post('/vehiculo',
 validatorHandler(createClienteVehiculoSchema,'body'),
-async (req, res) => {
-  const body = req.body;
-  const Newcliente = await service.createVehiculo(body);
-  res.json({
-    message: 'created',
-    data: Newcliente
-  });
-});
+async (req, res,next) => {
+  try{
+    const body = req.body;
+    const Newcliente = await service.createVehiculo(body);
+    res.json({
+      message: 'created',
+      data: Newcliente
+    }); 
+  }catch(err){
+    next(err);
+  }
+}); 
 
 //delete CKIENTE-VEHICULO
 router.delete('/vehiculo/:clienteVehiculoId',

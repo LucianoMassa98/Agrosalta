@@ -1,7 +1,7 @@
 const {models} = require('../libs/sequelize');
 const boom = require('@hapi/boom');
 
-
+ 
 class ClientesService{
     async create(data){
      
@@ -9,29 +9,39 @@ class ClientesService{
       return dat;
     }
     async createVehiculo(data){
-      
+      console.log("------------");
+      console.log(data);
       const dat = await models.ClienteVehiculo.create(data);
       return dat;
     }
     async find(){
-      const cli  = await models.Cliente.findAll();
+      const cli  = await models.Cliente.findAll({
+        include:['cliente','usuario','servicio']
+      });
       if(!cli){ throw boom.notFound('Cliente Not Found');}
       return cli;
     }
     async findVehiculos(clienteId){
-      const cli  = await models.ClienteVehiculo.findAll({
-        where: {
-          clienteId: {
-            [Op.eq]: clienteId
-          }
-        }
-      });
+      /*const cli  = await models.Cliente.findByPk(clienteId,{
+        
+        include:['items']
+        // buscar dentro de VentaProducto todos los 
+      });*/
+
+      const cli  = await models.ClienteVehiculo.findAll();
       if(!cli){ throw boom.notFound('ClienteVehiculo Not Found');}
       return cli;
     }
     async findOne(id){
       
-      const clies = await models.Cliente.findByPk(id);
+      const clies = await models.Cliente.findByPk(id,{
+      
+        include:['items',{
+          model: models.Operacion,
+          as:'operaciones',
+          include:['servicio','clienteVehiculo']
+        }]
+      });
       if(!clies){ throw boom.notFound('cliente Not Found');}
       return clies;
     }

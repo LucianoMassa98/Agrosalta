@@ -31,18 +31,18 @@ const createClienteSchema = joi.object({
   cuit: cuit.required()
 });
 const createClienteVehiculoSchema = joi.object({
- 
+  
   clienteId: id.required(),
   vehiculoId: id.required(),
   origen: joi.string().min(3).required(),
   patente: joi.string().min(3).required(),
   año: joi.number().required(),
-  motor: joi.number().required(),
+  motor: joi.string().min(3).required(),
   combustible: joi.string().min(3).required(),
   carroceria: joi.string().min(3).required(),
   chasis: joi.string().min(3).required(),
   color: joi.string().min(3).required(),
-  prendario: joi.string().min(3).required()
+  prendario: joi.string().min(2).required()
 });
 const updateClienteSchema = joi.object({
 

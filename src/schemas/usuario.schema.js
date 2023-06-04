@@ -1,5 +1,6 @@
 const joi = require('joi');
 const id = joi.number().integer();
+const tipo = joi.number().integer();
 const username = joi.string().min(3);
 const password = joi.string().min(3);
 const dni = joi.number();
@@ -15,6 +16,7 @@ const createUsuarioSchema = joi.object({
  
   username: username.required(),
   password: password.required(),
+  tipo: tipo.required(),
   nombre: nombre.required(),
   apellido: apellido.required(),
   dni: dni.required(),
@@ -27,6 +29,7 @@ const createUsuarioSchema = joi.object({
 const updateUsuarioSchema = joi.object({
   username,
   password,
+  tipo,
   nombre,
   apellido,
   dni,
