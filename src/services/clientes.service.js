@@ -20,13 +20,13 @@ class ClientesService{
       return cli;
     }
     async findVehiculos(clienteId){
-      /*const cli  = await models.Cliente.findByPk(clienteId,{
+      const cli  = await models.Cliente.findByPk(clienteId,{
         
         include:['items']
         // buscar dentro de VentaProducto todos los 
-      });*/
+      });
 
-      const cli  = await models.ClienteVehiculo.findAll();
+      //const cli  = await models.ClienteVehiculo.findAll();
       if(!cli){ throw boom.notFound('ClienteVehiculo Not Found');}
       return cli;
     }

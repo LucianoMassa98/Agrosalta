@@ -119,12 +119,12 @@ class OficinasService{
       return ofi;
     }
     async update(id, change){
-      const oficina = await this.findOne(id);
+      const oficina = await this.findOne(id,{});
       const rta = await oficina.update(change);
       return rta;
     }
     async delete(id){
-      const oficina = await this.findOne(id);
+      const oficina = await this.findOne(id,{});
       const rta = await oficina.destroy();
       return rta;
     }
