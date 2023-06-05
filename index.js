@@ -7,7 +7,7 @@ const {longError,errorHandler,ormErrorHandler,BoomErrorHandler}= require('./src/
 const port = process.env.PORT || 3000;
 app.use(express.json());
 
-const whitelist = ['http://localhost:3000','https://agrosalta-production.up.railway.app/api/v1/vehiculos'];
+const whitelist = ['http://localhost:3000','http://agrosalta-production.up.railway.app'];
 const options = {
   origin: (origin,callback)=>{
     if(whitelist.includes(origin) || !origin){
