@@ -23,7 +23,7 @@ const createUsuarioSchema = joi.object({
   celular: celular.required(),
   direccion: direccion.required(),
   email: email.required(),
-  imagen: imagen,
+  imagen,
   nacimiento: nacimiento.required()
 });
 const updateUsuarioSchema = joi.object({

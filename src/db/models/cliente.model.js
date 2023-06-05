@@ -38,19 +38,19 @@ const clienteSchema  = {
   },
    sexo: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   provincia: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   tipoConsumidor: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   tipoPersona: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   codPostal: {
     allowNull: false,

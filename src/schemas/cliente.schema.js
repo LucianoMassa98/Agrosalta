@@ -22,7 +22,7 @@ const createClienteSchema = joi.object({
   celular: celular.required(),
   direccion: direccion.required(),
   email: email.required(),
-  imagen: imagen,
+  imagen,
   sexo: sexo.required(),
   provincia: provincia.required(),
   tipoConsumidor: tipoConsumidor.required(),
