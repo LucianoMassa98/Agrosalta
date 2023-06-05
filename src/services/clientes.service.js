@@ -15,9 +15,7 @@ class ClientesService{
       return dat;
     }
     async find(){
-      const cli  = await models.Cliente.findAll({
-        include:['cliente','usuario','servicio']
-      });
+      const cli  = await models.Cliente.findAll();
       if(!cli){ throw boom.notFound('Cliente Not Found');}
       return cli;
     }
