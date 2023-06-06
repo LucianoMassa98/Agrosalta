@@ -52,34 +52,34 @@ class OficinasService{
     async findOne(id,query){
        
       const options={
-        where:{},
         include: []
       };
       const {desde,hasta} = query;
       if(desde && hasta){
-        options.where={
-          
-          createdAt:{
-            [Op.gte]: desde,
-            [Op.lte]: hasta
-          }
-          
-        };
-      /* options.include.push('operaciones');
-        options.include.push('movimientos');
-        */
         
       options.include.push({
           model: models.Operacion,
           as: 'operaciones',
-          include:['cliente','usuario','servicio']
+          include:['cliente','usuario','servicio'],
+          where:{
+            createdAt:{
+              [Op.gte]: desde,
+              [Op.lte]: hasta
+            }
+          }
           }
         );
 
         options.include.push({
           model: models.Movimiento,
           as: 'movimientos',
-          include:['usuario']
+          include:['usuario'],
+          where:{
+            createdAt:{
+              [Op.gte]: desde,
+              [Op.lte]: hasta
+            }
+          }
           }
         );
 
