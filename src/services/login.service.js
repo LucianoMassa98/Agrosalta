@@ -13,13 +13,23 @@ class loginService{
       const res  = await models.Usuario.findOne(options);
       if(!res){ throw boom.notFound('Usuario Not Found');}
       const res2 = await models.Oficina.findByPk(oficinaId,{
-        include:['movimientos'],
+        include:[{
+          model: models.Movimiento,
+          as: 'movimientos',
+          limit: 1,
+          order: [['createdAt', 'DESC']]
+          }],
+        
       });
       var estado = true;
 
       if(!res2){throw boom.notFound('Movimientos not found');}
-      if(res2.movimientos[0].descripcion=="Cierre de caja"){estado=false;}
-
+      
+      if(res2.dataValues.movimientos.length>0){
+      if(res2.movimientos[0].dataValues.descripcion=="Cierre de caja"){estado=false;}
+      }else{
+        estado=false;
+      }
 
       return {
               ...res.dataValues, 
