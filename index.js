@@ -26,6 +26,15 @@ app.use(ormErrorHandler);
 app.use(BoomErrorHandler);
 app.use(errorHandler);
 
+// Obtener la hora actual del servidor
+var horaActualServidor = new Date();
+
+// Obtener la zona horaria del servidor
+var zonaHorariaServidor = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+console.log("Hora actual del servidor: " + horaActualServidor);
+console.log("Zona horaria del servidor: " + zonaHorariaServidor)
+
 
 app.listen(port, ()=>{
   console.log('my port: '+port);
