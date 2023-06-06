@@ -24,10 +24,10 @@ class OficinasService{
           }
           
         };
-        /*options.include.push('operaciones');
+        options.include.push('operaciones');
         options.include.push('movimientos');
-        
-*/
+        /*
+
         options.include.push({
           model: models.Operacion,
           as: 'operaciones',
@@ -41,7 +41,7 @@ class OficinasService{
           include:['usuario']
           }
         );
-       
+       */
       
       }
       
@@ -65,48 +65,24 @@ class OficinasService{
           }
           
         };
-        options.include.push('operaciones');
+      /* options.include.push('operaciones');
         options.include.push('movimientos');
-
-        /*
-        options.include.push({association: 'operaciones',
-          where: {
-            createdAt: {
-              [Op.gte]: desde,
-              [Op.lte]: hasta
-            },
-          },
-        });
-        options.include.push( {association: 'movimientos',
-          where: {
-            createdAt: {
-              [Op.gte]: desde,
-              [Op.lte]: hasta
-            },
-          },
-        });
-         options={
-          include:[{
-            model: models.Operacion,
-            where: {
-              createdAt: {
-                [Op.gte]: desde,
-                [Op.lte]: hasta
-              },
-            },
-          },
-          {
-            model: models.Movimiento,
-            where: {
-              createdAt: {
-                [Op.gte]: desde,
-                [Op.lte]: hasta
-              },
-            },
+        */
+        
+      options.include.push({
+          model: models.Operacion,
+          as: 'operaciones',
+          include:['cliente','usuario','servicio']
           }
-          ]
-        };
-*/
+        );
+
+        options.include.push({
+          model: models.Movimiento,
+          as: 'movimientos',
+          include:['usuario']
+          }
+        );
+
        }
       
       const ofi  = await models.Oficina.findByPk(id,options);
