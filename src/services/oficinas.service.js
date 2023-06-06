@@ -15,7 +15,7 @@ class OficinasService{
       const {desde,hasta} = query;
       if(desde && hasta){
       
-      /*  options.where={
+        options.where={
           
           createdAt:{
             [Op.gte]: desde,
@@ -25,9 +25,9 @@ class OficinasService{
         };
         options.include.push('operaciones');
         options.include.push('movimientos');
-        */
+        
 
-        options.include.push({
+       /* options.include.push({
           model: models.Operacion,
           as: 'operaciones',
           where:{
@@ -47,8 +47,10 @@ class OficinasService{
               [Op.lte]: hasta
             }
           }
-        });
-       }
+        });*/
+       
+      
+      }
       
       const ofi  = await models.Oficina.findAll(options);
       if(!ofi){ throw boom.notFound('Oficina Not Found');}
