@@ -15,7 +15,7 @@ class OficinasService{
       };
       const {desde,hasta} = query;
       if(desde && hasta){
-        options.association= 'usuario';
+        
         options.where={
           
           createdAt:{
@@ -24,31 +24,23 @@ class OficinasService{
           }
           
         };
-        options.include.push('operaciones');
+        /*options.include.push('operaciones');
         options.include.push('movimientos');
         
-
-       /* options.include.push({
+*/
+        options.include.push({
           model: models.Operacion,
           as: 'operaciones',
-          where:{
-            createdAt:{
-              [Op.gte]: desde,
-              [Op.lte]: hasta
-            }
+          include:['cliente','usuario','servicio']
           }
-        });
+        );
 
         options.include.push({
           model: models.Movimiento,
           as: 'movimientos',
-          where:{
-            createdAt:{
-              [Op.gte]: desde,
-              [Op.lte]: hasta
-            }
+          include:['usuario']
           }
-        });*/
+        );
        
       
       }
