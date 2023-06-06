@@ -10,11 +10,12 @@ class OficinasService{
     async find(query){
       const options={
         where:{},
+        
         include: []
       };
       const {desde,hasta} = query;
       if(desde && hasta){
-      
+        options.association= 'usuario';
         options.where={
           
           createdAt:{
