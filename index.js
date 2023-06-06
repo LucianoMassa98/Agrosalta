@@ -26,6 +26,12 @@ app.use(ormErrorHandler);
 app.use(BoomErrorHandler);
 app.use(errorHandler);
 
+
+const zonaHorariaArgentina = 'America/Argentina/Buenos_Aires';
+
+// definir la representación de fecha y hora en la zona horaria de Argentina
+const formatoFechaHoraArgentina = new Intl.DateTimeFormat('es-ES', { timeZone: zonaHorariaArgentina });
+
 // Obtener la hora actual del servidor
 var horaActualServidor = new Date();
 
@@ -34,6 +40,10 @@ var zonaHorariaServidor = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 console.log("Hora actual del servidor: " + horaActualServidor);
 console.log("Zona horaria del servidor: " + zonaHorariaServidor)
+
+
+
+
 
 
 app.listen(port, ()=>{

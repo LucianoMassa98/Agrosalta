@@ -5,6 +5,7 @@ class loginService{
    
     async signIn(body){
 
+    console.log("--->"+models);
       const options= { where:{}}
       const {username, password, oficinaId}=body;
       options.where.username= username;
