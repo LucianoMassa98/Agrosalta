@@ -10,13 +10,19 @@ class MovimientosService{
     async find(query){
 
       const options= {
+        required: false,
         where:{}
+        
       };
       const {desde,hasta} = query;
       if(desde && hasta){
+        const fechaDesde = new Date(desde);
+        const fechaHasta = new Date(hasta);
+        fechaDesde.setHours(fechaDesde.getHours() + 3);
+        fechaHasta.setHours(fechaHasta.getHours() + 3);
         options.where.createdAt={
-          [Op.gte]: desde,
-          [Op.lte]: hasta
+          [Op.gte]: fechaDesde,
+          [Op.lte]: fechaHasta
         }
       }
       

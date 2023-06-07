@@ -13,8 +13,7 @@ if (config.isProd) {
     ssl: {
       require: true,
       rejectUnauthorized: false
-    },
-    timezone: '-03:00'
+    }
   }
 }
 

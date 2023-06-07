@@ -8,40 +8,46 @@ class OficinasService{
       return dat;
     }
     async find(query){
+      
       const options={
-        where:{},
-        
         include: []
       };
       const {desde,hasta} = query;
       if(desde && hasta){
         
-        options.where={
-          
-          createdAt:{
-            [Op.gte]: desde,
-            [Op.lte]: hasta
-          }
-          
-        };
-        options.include.push('operaciones');
-        options.include.push('movimientos');
-        /*
 
+        const fechaDesde = new Date(desde);
+        const fechaHasta = new Date(hasta);
+        fechaDesde.setHours(fechaDesde.getHours() + 3);
+        fechaHasta.setHours(fechaHasta.getHours() + 3);
+       
         options.include.push({
           model: models.Operacion,
           as: 'operaciones',
-          include:['cliente','usuario','servicio']
+          required: false,
+           where:{
+            createdAt:{
+              [Op.gte]: fechaDesde,
+              [Op.lte]: fechaHasta
+            }
+           }
+          
           }
         );
 
         options.include.push({
           model: models.Movimiento,
           as: 'movimientos',
-          include:['usuario']
+          required: false,
+           where:{
+            createdAt:{
+              [Op.gte]: fechaDesde,
+              [Op.lte]: fechaHasta
+            }
+           }
           }
         );
-       */
+      
       
       }
       
@@ -52,34 +58,44 @@ class OficinasService{
     async findOne(id,query){
        
       const options={
+        
         include: []
       };
       const {desde,hasta} = query;
       if(desde && hasta){
         
+        const fechaDesde = new Date(desde);
+        const fechaHasta = new Date(hasta);
+        fechaDesde.setHours(fechaDesde.getHours() + 3);
+        fechaHasta.setHours(fechaHasta.getHours() + 3);
+
       options.include.push({
           model: models.Operacion,
           as: 'operaciones',
-          include:['cliente','usuario','servicio'],
-          where:{
+          required: false,
+          where: {
             createdAt:{
-              [Op.gte]: desde,
-              [Op.lte]: hasta
+              [Op.gte]: fechaDesde,
+              [Op.lte]: fechaHasta
             }
-          }
+          },
+          include:['cliente','usuario','servicio'],
+          
           }
         );
 
         options.include.push({
           model: models.Movimiento,
           as: 'movimientos',
-          include:['usuario'],
-          where:{
+          required: false,
+          where: {
             createdAt:{
-              [Op.gte]: desde,
-              [Op.lte]: hasta
+              [Op.gte]: fechaDesde,
+              [Op.lte]: fechaHasta
             }
-          }
+          },
+          include:['usuario'],
+          
           }
         );
 
