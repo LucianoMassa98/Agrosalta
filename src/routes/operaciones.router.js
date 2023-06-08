@@ -4,7 +4,7 @@ const OperacionesService = require('../services/operaciones.service');
 const service = new OperacionesService();
 const  {
   createOperacionSchema,
-  updateOperacioneSchema,
+  updateOperacionSchema,
   getOperacionSchema,
   queryOperacionSchema
   } = require('../schemas/operacion.schema');
@@ -57,11 +57,12 @@ async (req, res,next) => {
 //update
 router.patch('/:operacionId',
 validatorHandler(getOperacionSchema,'params'),
-validatorHandler(updateOperacioneSchema,'body'),
+validatorHandler(updateOperacionSchema,'body'),
 async (req, res,next) => {
   try{
     const { operacionId } = req.params;
     const body = req.body;
+    console.log("--------->");
     const cliUpdate = await service.update(operacionId,body);
     res.json(cliUpdate);
   }

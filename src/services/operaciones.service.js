@@ -10,7 +10,7 @@ class OperacionesService{
     async find(query){
 
       const options= {
-        required: false,
+        include: [],
         where:{}
       };
       const {desde,hasta} = query;
@@ -23,6 +23,19 @@ class OperacionesService{
           [Op.gte]: fechaDesde,
           [Op.lte]: fechaHasta
         }
+      }
+      const {pendiente}=query;
+      if(pendiente){
+        options.required=false;
+        const fechaActual = new Date()
+        options.where={
+            hasta: {
+            [Op.lte]: fechaActual,
+            },
+        }
+        options.include.push('cliente');
+        options.include.push('clienteVehiculo');
+        options.include.push('servicio');
       }
      
       const {usuarioId} = query;
@@ -40,31 +53,14 @@ class OperacionesService{
     async findOne(id,query){
 
       const options = {
-       required: false,
-        include:[]
       }
-      const {pendiente}=query;
-      if(pendiente){
-        const fechaActual = new Date()
-        options.where={
-            hasta: {
-            [Op.lte]: fechaActual,
-            },
-        }
-        options.include.push('clienteVehiculo');
-        options.include.push({
-          model:models.Servicio,
-          as: 'servicio',
-          required: false,
-          include:['servicioValor']
-
-        });
-      }
+     
       const ope  = await models.Operacion.findByPk(id,options);
       if(!ope){ throw boom.notFound('Operacion Not Found');}
       return ope;
     }
     async update(id, change){
+      console.log("aqui");
       const ope = await this.findOne(id,{});
       const rta = await ope.update(change);
       return rta;
