@@ -17,9 +17,9 @@ const pendiente = joi.boolean();
 const createdAt = joi.date();
 
 const createOperacionSchema = joi.object({
- usuarioId,
+ usuarioId: id.required(),
  clienteId: clienteId.required(),
- clienteVehiculoId,
+ clienteVehiculoId: id.required(),
  servicioId: id.required(),
  oficinaId: id.required(),
  valor: valor.required(),
@@ -38,7 +38,7 @@ const updateOperacionSchema = joi.object({
   createdAt
 });
 const getOperacionSchema = joi.object({
-  operacionId
+  operacionId: id.required()
 });
 const queryOperacionSchema = joi.object({
   desde,
