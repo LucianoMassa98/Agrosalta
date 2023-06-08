@@ -34,7 +34,11 @@ class OperacionesService{
             },
         }
         options.include.push('cliente');
-        options.include.push('clienteVehiculo');
+        options.include.push({
+          model: models.ClienteVehiculo,
+          as: 'clienteVehiculo',
+          include:['vehiculo']
+        });
         options.include.push('servicio');
       }
      

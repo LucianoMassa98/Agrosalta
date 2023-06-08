@@ -78,6 +78,7 @@ const clienteVehiculoSchema  = {
 class ClienteVehiculo extends Model{
   // crear metodos estaticos
   static associate(models){
+    this.belongsTo(models.Vehiculo, {as: 'vehiculo'});
   }
   // definir otrto estatico para la conexin
   static config(sequelize){

@@ -37,7 +37,11 @@ class ClientesService{
         include:['items',{
           model: models.Operacion,
           as:'operaciones',
-          include:['servicio','clienteVehiculo']
+          include:['servicio',{
+            model:models.ClienteVehiculo,
+            as: 'clienteVehiculo',
+            include:['vehiculo']
+          }]
         }]
       });
       if(!clies){ throw boom.notFound('cliente Not Found');}
