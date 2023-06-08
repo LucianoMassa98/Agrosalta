@@ -26,11 +26,13 @@ async (req,res,next)=>{
 });
 //find one
 router.get('/:operacionId',
+validatorHandler(queryOperacionSchema, 'query'),
 validatorHandler(getOperacionSchema, 'params'),
 async (req,res,next)=>{
   try{
     const{operacionId}=req.params;
-  const operacion = await service.findOne(operacionId);
+    const query = req.query;
+  const operacion = await service.findOne(operacionId,query);
   res.json(operacion);
   }catch(err){
     next(err);

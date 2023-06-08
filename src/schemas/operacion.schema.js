@@ -13,10 +13,13 @@ const usuarioId=joi.number().integer();
 const oficinaId=joi.number().integer();
  const cedulaVerde = joi.string().min(3);
  const clienteId = joi.number().integer();
+const pendiente = joi.boolean();
+const createdAt = joi.date();
+
 const createOperacionSchema = joi.object({
- usuarioId: id.required(),
+ usuarioId,
  clienteId: clienteId.required(),
- clienteVehiculoId: id.required(),
+ clienteVehiculoId,
  servicioId: id.required(),
  oficinaId: id.required(),
  valor: valor.required(),
@@ -26,19 +29,25 @@ const createOperacionSchema = joi.object({
  cedulaVerde: cedulaVerde.required(),
 });
 const updateOperacionSchema = joi.object({
-cuotas,
-desde,
-hasta
+  usuarioId,
+  oficinaId,
+  valor,
+  cuotas,
+  desde,
+  hasta,
+  createdAt
 });
 const getOperacionSchema = joi.object({
-  operacionId: id.required()
+  operacionId
 });
 const queryOperacionSchema = joi.object({
   desde,
   hasta,
   usuarioId,
   oficinaId,
-  clienteId
+  clienteId,
+  pendiente,
+ 
 
 });
 module.exports = {

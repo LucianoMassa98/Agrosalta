@@ -37,19 +37,41 @@ class OperacionesService{
       if(!ope){ throw boom.notFound('Operacion Not Found');}
       return ope;
     }
-    async findOne(id){
-      const ope  = await models.Operacion.findByPk(id);
+    async findOne(id,query){
+
+      const options = {
+       required: false,
+        include:[]
+      }
+      const {pendiente}=query;
+      if(pendiente){
+        const fechaActual = new Date()
+        options.where={
+            hasta: {
+            [Op.lte]: fechaActual,
+            },
+        }
+        options.include.push('clienteVehiculo');
+        options.include.push({
+          model:models.Servicio,
+          as: 'servicio',
+          required: false,
+          include:['servicioValor']
+
+        });
+      }
+      const ope  = await models.Operacion.findByPk(id,options);
       if(!ope){ throw boom.notFound('Operacion Not Found');}
       return ope;
     }
     async update(id, change){
-      const ope = await this.findOne(id);
+      const ope = await this.findOne(id,{});
       const rta = await ope.update(change);
       return rta;
     }
     async delete(id){
 
-      const ope = await this.findOne(id);
+      const ope = await this.findOne(id,{});
       const rta = await ope.destroy();
       return rta;
     }
