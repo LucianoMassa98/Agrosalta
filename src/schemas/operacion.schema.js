@@ -25,8 +25,7 @@ const createOperacionSchema = joi.object({
  valor: valor.required(),
  cuotas: cuotas.required(),
  desde: desde.required(),
- hasta: hasta.required(),
- cedulaVerde: cedulaVerde.required(),
+ hasta: hasta.required()
 });
 const updateOperacionSchema = joi.object({
   usuarioId,
