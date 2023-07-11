@@ -55,6 +55,10 @@ const clienteVehiculoSchema  = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  tipo: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
   chasis: {
     type: DataTypes.STRING,
     allowNull: true,
@@ -67,6 +71,7 @@ const clienteVehiculoSchema  = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,

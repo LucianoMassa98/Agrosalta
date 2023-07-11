@@ -4,6 +4,8 @@ const nombre = joi.string().min(3);
 const valor = joi.number();
 const desde = joi.date();
 const hasta = joi.date();
+const carroceria = joi.string().min(3);
+const tipo = joi.string().min(3);
 const createServicioSchema = joi.object({
   nombre: nombre.required(),
 });
@@ -12,6 +14,9 @@ const AddValorServicioSchema = joi.object({
   desde: desde.required(),
   hasta:hasta.required(),
   valor: valor.required(),
+  carroceria: carroceria.required(),
+  tipo: tipo.required()
+
 });
 
 const SubValorServicioSchema = joi.object({

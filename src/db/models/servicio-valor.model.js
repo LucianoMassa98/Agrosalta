@@ -33,6 +33,14 @@ const ServicioValorSchema  = {
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW
   },
+  carroceria: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  tipo: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
