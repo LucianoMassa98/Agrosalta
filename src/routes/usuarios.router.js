@@ -65,14 +65,14 @@ async (req, res,next) => {
 });
 
 //update 2
-router.put('/:servicioId',
-validatorHandler(getServicioSchema,'params'),
-validatorHandler(updateServicioSchema,'body'),
+router.put('/:usuarioId',
+validatorHandler(getUsuarioSchema,'params'),
+validatorHandler(updateUsuarioSchema,'body'),
 async (req, res,next) => {
   try{
-    const { servicioId } = req.params;
+    const { usuarioId } = req.params;
     const body = req.body;
-    const cliUpdate = await service.update(servicioId,body);
+    const cliUpdate = await service.update(usuarioId,body);
     res.json(cliUpdate);
   }
   catch(err){
