@@ -10,7 +10,7 @@ class ClientesService{
     }
     async createVehiculo(data){
       
-      console.log(data);
+      
       const dat = await models.ClienteVehiculo.create(data);
       return dat;
     }
