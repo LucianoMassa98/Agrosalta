@@ -60,6 +60,22 @@ async (req, res,next) => {
     next(err);
   }
 });
+
+//update 2
+router.put('/:vehiculoId',
+validatorHandler(getVehiculoSchema,'params'),
+validatorHandler(updateVehiculoSchema,'body'),
+async (req, res,next) => {
+  try{
+    const { vehiculoId } = req.params;
+    const body = req.body;
+    const cliUpdate = await service.update(vehiculoId,body);
+    res.json(cliUpdate);
+  }
+  catch(err){
+    next(err);
+  }
+});
 //delete
 router.delete('/:vehiculoId',
   validatorHandler(getVehiculoSchema,'params'),

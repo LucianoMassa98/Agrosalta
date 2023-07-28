@@ -65,6 +65,22 @@ async (req, res,next) => {
     next(err);
   }
 });
+
+//update 2
+router.put('/:clienteId',
+validatorHandler(getClienteSchema,'params'),
+validatorHandler(updateClienteSchema,'body'),
+async (req, res,next) => {
+  try{
+    const { clienteId } = req.params;
+    const body = req.body;
+    const cliUpdate = await service.update(clienteId,body);
+    res.json(cliUpdate);
+  }
+  catch(err){
+    next(err);
+  }
+});
 //delete
 router.delete('/:clienteId',
   validatorHandler(getClienteSchema,'params'),

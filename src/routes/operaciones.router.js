@@ -70,6 +70,23 @@ async (req, res,next) => {
     next(err);
   }
 });
+
+//update 2
+router.put('/:operacionId',
+validatorHandler(getOperacionSchema,'params'),
+validatorHandler(updateOperacionSchema,'body'),
+async (req, res,next) => {
+  try{
+    const { operacionId } = req.params;
+    const body = req.body;
+    console.log("--------->");
+    const cliUpdate = await service.update(operacionId,body);
+    res.json(cliUpdate);
+  }
+  catch(err){
+    next(err);
+  }
+});
 //delete
 router.delete('/:operacionId',
   validatorHandler(getOperacionSchema,'params'),

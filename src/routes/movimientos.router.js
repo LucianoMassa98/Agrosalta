@@ -65,6 +65,22 @@ async (req, res,next) => {
     next(err);
   }
 });
+
+//update 2
+router.put('/:movimientoId',
+validatorHandler(getMovimientoSchema,'params'),
+validatorHandler(updateMovimientoSchema,'body'),
+async (req, res,next) => {
+  try{
+    const { movimientoId } = req.params;
+    const body = req.body;
+    const cliUpdate = await service.update(movimientoId,body);
+    res.json(cliUpdate);
+  }
+  catch(err){
+    next(err);
+  }
+});
 //delete
 router.delete('/:movimientoId',
   validatorHandler(getMovimientoSchema,'params'),

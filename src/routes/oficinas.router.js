@@ -68,6 +68,22 @@ async (req, res,next) => {
     next(err);
   }
 });
+
+//update 2
+router.put('/:oficinaId',
+validatorHandler(getOficinaSchema,'params'),
+validatorHandler(updateOficinaSchema,'body'),
+async (req, res,next) => {
+  try{
+    const { oficinaId } = req.params;
+    const body = req.body;
+    const cliUpdate = await service.update(oficinaId,body);
+    res.json(cliUpdate);
+  }
+  catch(err){
+    next(err);
+  }
+});
 //delete
 router.delete('/:oficinaId',
   validatorHandler(getOficinaSchema,'params'),
