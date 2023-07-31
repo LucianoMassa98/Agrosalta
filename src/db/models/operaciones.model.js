@@ -84,22 +84,6 @@ const operacionSchema  = {
     allowNull: false,
     type: DataTypes.DATE,
   },
-  sumaAsegurada: {
-    allowNull: true,
-    type: DataTypes.DOUBLE,
-  },
-  clausula: {
-    allowNull: true,
-    type: DataTypes.DOUBLE,
-  },
-  prima: {
-    allowNull: true,
-    type: DataTypes.DOUBLE,
-  },
-  premio: {
-    allowNull: true,
-    type: DataTypes.DOUBLE,
-  },
   cotizacion: {
     allowNull: true,
     type: DataTypes.DOUBLE,

@@ -1,12 +1,13 @@
 const joi = require('joi');
 const id = joi.number().integer();
-const premio= joi.number();
+
 const valor = joi.number();
 const cuotas=joi.number();
-const sumaAsegurada=joi.number();
-const clausulaAjuste=joi.number();
-const prima=joi.number();
-const nroCotizacion=joi.number();
+const cotizacion=joi.number();
+const propuesta=joi.number();
+const poliza=joi.number();
+const endoso=joi.number();
+const subrogacion=joi.number();
 const desde = joi.date();
 const hasta = joi.date();
 const usuarioId=joi.number().integer();
@@ -15,6 +16,8 @@ const oficinaId=joi.number().integer();
  const clienteId = joi.number().integer();
 const pendiente = joi.boolean();
 const createdAt = joi.date();
+
+
 
 const createOperacionSchema = joi.object({
  usuarioId: id.required(),
@@ -25,7 +28,14 @@ const createOperacionSchema = joi.object({
  valor: valor.required(),
  cuotas: cuotas.required(),
  desde: desde.required(),
- hasta: hasta.required()
+ hasta: hasta.required(),
+ cotizacion,
+ propuesta,
+ poliza,
+ endoso,
+ subrogacion,
+ cedulaVerde
+
 });
 const updateOperacionSchema = joi.object({
   usuarioId,
@@ -34,7 +44,13 @@ const updateOperacionSchema = joi.object({
   cuotas,
   desde,
   hasta,
-  createdAt
+  createdAt,
+  cotizacion,
+  propuesta,
+  poliza,
+  endoso,
+  subrogacion,
+  cedulaVerde,
 });
 const getOperacionSchema = joi.object({
   operacionId: id.required()
