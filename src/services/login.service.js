@@ -24,7 +24,7 @@ class loginService{
       });
       var estado = true;
 
-      if(!res2){throw boom.notFound('Movimientos not found');}
+      if(!res2){throw boom.notFound('Movimientos de la oficina no encontrada');}
       
       if(res2.dataValues.movimientos.length>0){
       if(res2.movimientos[0].dataValues.descripcion=="Cierre de caja"){estado=false;}

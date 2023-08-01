@@ -24,7 +24,7 @@ async (req,res,next)=>{
   }catch(err){
     next(err);
   }
-});
+}); 
 //find one
 router.get('/:clienteId',
 validatorHandler(getClienteSchema, 'params'),
