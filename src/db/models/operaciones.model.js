@@ -87,25 +87,31 @@ const operacionSchema  = {
   cotizacion: {
     allowNull: true,
     type: DataTypes.DOUBLE,
+    defaultValue: 0
+    
   },
   propuesta: {
     allowNull: true,
     type: DataTypes.DOUBLE,
+    defaultValue: 0
   },
   poliza: {
     allowNull: true,
     type: DataTypes.DOUBLE,
+    defaultValue: 0
   },
   endoso: {
     allowNull: true,
     type: DataTypes.DOUBLE,
+    defaultValue: 0
   },
   subrogacion: {
     allowNull: true,
     type: DataTypes.DOUBLE,
+    defaultValue: 0
   },
   cedulaVerde: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
   },
   createdAt: {
