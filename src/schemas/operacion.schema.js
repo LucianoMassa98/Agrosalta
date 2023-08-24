@@ -18,7 +18,7 @@ const pendiente = joi.boolean();
 const createdAt = joi.date();
 
 
-
+ 
 const createOperacionSchema = joi.object({
  usuarioId: id.required(),
  clienteId: clienteId.required(),

@@ -3,7 +3,7 @@ const boom = require('@hapi/boom');
 const { Op } = require('sequelize');
 class OperacionesService{
     async create(data){
-
+ 
       const dat = await models.Operacion.create(data);
       return dat;
     }
@@ -65,6 +65,7 @@ class OperacionesService{
     }
     async update(id, change){
       console.log("aqui");
+      console.log(change);
       const ope = await this.findOne(id,{});
       const rta = await ope.update(change);
       return rta;
