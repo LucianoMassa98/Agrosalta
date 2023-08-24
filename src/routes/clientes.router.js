@@ -59,7 +59,10 @@ async (req, res,next) => {
     const { clienteId } = req.params;
     const body = req.body;
     const cliUpdate = await service.update(clienteId,body);
-    res.json(cliUpdate);
+    res.json({
+      message: 'updated',
+      data: cliUpdate
+    });
   }
   catch(err){
     next(err);
@@ -75,7 +78,10 @@ async (req, res,next) => {
     const { clienteId } = req.params;
     const body = req.body;
     const cliUpdate = await service.update(clienteId,body);
-    res.json(cliUpdate);
+    res.json({
+      message: 'updated',
+      data: cliUpdate
+    });
   }
   catch(err){
     next(err);
@@ -88,7 +94,10 @@ router.delete('/:clienteId',
   try{
     const { clienteId } = req.params;
   const delClie = await service.delete(clienteId);
-  res.json(delClie);
+  res.json({
+    message: 'deleted',
+    data: delClie
+  });
   }catch(err){
     next(err);
   }
@@ -131,7 +140,10 @@ router.delete('/vehiculo/:clienteVehiculoId',
   try{
     const { clienteVehiculoId } = req.params;
   const delClie = await service.deleteVehiculo(clienteVehiculoId);
-  res.json(delClie);
+  res.json({
+    message: 'Vehiculo client deleted',
+    data: delClie
+  });
   }catch(err){
     next(err);
   }

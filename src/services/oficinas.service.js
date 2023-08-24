@@ -18,8 +18,8 @@ class OficinasService{
 
         const fechaDesde = new Date(desde);
         const fechaHasta = new Date(hasta);
-        fechaDesde.setHours(fechaDesde.getHours() + 3);
-        fechaHasta.setHours(fechaHasta.getHours() + 3);
+        //fechaDesde.setHours(fechaDesde.getHours() + 3);
+        //fechaHasta.setHours(fechaHasta.getHours() + 3);
        
         options.include.push({
           model: models.Operacion,

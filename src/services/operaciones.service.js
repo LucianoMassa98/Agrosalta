@@ -64,8 +64,7 @@ class OperacionesService{
       return ope;
     }
     async update(id, change){
-      console.log("aqui");
-      console.log(change);
+      
       const ope = await this.findOne(id,{});
       const rta = await ope.update(change);
       return rta;
