@@ -55,6 +55,11 @@ const updateOperacionSchema = joi.object({
 const getOperacionSchema = joi.object({
   operacionId: id.required()
 });
+const getCompararSchema = joi.object({
+  clienteId: id.required(),
+  servicioId: id.required(),
+  clienteVehiculoId: id.required()
+});
 const queryOperacionSchema = joi.object({
   desde,
   hasta,
@@ -69,5 +74,6 @@ module.exports = {
   createOperacionSchema,
   updateOperacionSchema,
   getOperacionSchema,
-  queryOperacionSchema
+  queryOperacionSchema,
+  getCompararSchema
   };

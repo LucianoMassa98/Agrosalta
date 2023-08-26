@@ -75,6 +75,22 @@ class OperacionesService{
       const rta = await ope.destroy();
       return rta;
     }
+
+    async comprobar(clienteId,servicioId,clienteIdVehiculoId){
+
+      const operacion = await models.operacion.findOne({
+        where:{
+          clienteId: clienteId,
+          servicioId: servicioId,
+          clienteIdVehiculoId: clienteIdVehiculoId
+        }
+      });
+
+      if(!operacion){throw boom.notFound("Operacion no encontrada");}
+
+      return operacion;
+
+    }
   }
   module.exports = OperacionesService;
   

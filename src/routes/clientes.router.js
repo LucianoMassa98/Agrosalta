@@ -148,5 +148,16 @@ router.delete('/vehiculo/:clienteVehiculoId',
     next(err);
   }
 });
-
+//calcular
+router.get('/calcularPrecio/:clienteVehiculoId',
+validatorHandler(getClienteVehiculoSchema, 'params'),
+async (req,res,next)=>{
+  try{
+    const{clienteVehiculoId}=req.params;
+  const servicio = await service.calcular(clienteVehiculoId);
+  res.json(servicio);
+  }catch(err){
+    next(err);
+  }
+});
 module.exports=router;

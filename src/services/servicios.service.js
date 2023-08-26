@@ -6,18 +6,15 @@ class ServiciosService{
       const dat = await models.Servicio.create(data);
       return dat;
     }
-    async addServicioValor(data){
-      const dat = await models.ServicioValor.create(data);
-      return dat;
-    }
+    
 
     async find(){
-      const serv  = await models.Servicio.findAll({include:['servicioValor']});
+      const serv  = await models.Servicio.findAll();
       if(!serv){ throw boom.notFound('Servicio Not Found');}
       return serv;
     }
     async findOne(id){
-      const serv = await models.Servicio.findByPk(id,{include:['servicioValor']});
+      const serv = await models.Servicio.findByPk(id);
       if(!serv){ throw boom.notFound('Servicio Not Found');}
       return serv;
     }
@@ -31,13 +28,8 @@ class ServiciosService{
       const rta = await serv.destroy();
       return rta;
     }
-    async subServicioValor(id){
-      
-      const serv = await models.ServicioValor.findByPk(id);
-      if(!serv){ throw boom.notFound('Servicio Valor Not Found');}
-      const rta = await serv.destroy();
-      return rta;
-    }
+
+    
   }
   module.exports = ServiciosService;
   

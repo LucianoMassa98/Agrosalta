@@ -5,9 +5,7 @@ const service = new ServiciosService();
 const  {
   createServicioSchema,
   updateServicioSchema,
-  getServicioSchema,
-  AddValorServicioSchema,
-  SubValorServicioSchema
+  getServicioSchema
   } = require('../schemas/servicio.schema');
 
   const validatorHandler = require('../middlewares/validator.handler');
@@ -36,6 +34,8 @@ async (req,res,next)=>{
     next(err);
   }
 });
+
+
 //create
 router.post('/',
 validatorHandler(createServicioSchema,'body'),
@@ -50,18 +50,7 @@ async (req, res,next) => {
  }catch(err){next(err);}
 });
 
-router.post('/addValor',
-validatorHandler(AddValorServicioSchema,'body'),
-async (req, res,next) => {
- try{
-  const body = req.body;
-  const Newservicio = await service.addServicioValor(body);
-  res.json({
-    message: 'created',
-    data: Newservicio
-  });
- }catch(err){next(err);}
-});
+
 //update
 router.patch('/:servicioId',
 validatorHandler(getServicioSchema,'params'),
@@ -107,16 +96,6 @@ router.delete('/:servicioId',
   }
 });
 
-router.delete('/subValor/:servicioValorId',
-  validatorHandler(SubValorServicioSchema,'params'),
-  async(req, res,next) => {
-  try{
-    const { servicioValorId } = req.params;
-  const delClie = await service.subServicioValor(servicioValorId);
-   res.json(delClie);
-  }catch(err){
-    next(err);
-  }
-});
+
 
 module.exports=router;

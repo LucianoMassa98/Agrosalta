@@ -1,5 +1,5 @@
 const {Model,DataTypes, Sequelize} = require('sequelize');
-const {SERVICIO_TABLE}=require('./servicio.model');
+
 const SERVICIO_VALOR_TABLE = 'servicios_valores';
 const ServicioValorSchema  = {
   id: {
@@ -7,17 +7,6 @@ const ServicioValorSchema  = {
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER
-  },
-  servicioId: {
-    field: 'servicio_id',
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: SERVICIO_TABLE,
-      key: 'id'
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
   },
   valor: {
     allowNull: false,
@@ -52,7 +41,6 @@ const ServicioValorSchema  = {
 class ServicioValor extends Model{
   // crear metodos estaticos
   static associate(models){
-    this.belongsTo(models.Servicio, {as: 'servicio'});
 
   }
   // definir otrto estatico para la conexin

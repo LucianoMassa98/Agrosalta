@@ -1,6 +1,6 @@
 const {models} = require('../libs/sequelize');
 const boom = require('@hapi/boom');
-
+const { Op } = require('sequelize');
  
 class ClientesService {
   async create(data) {
@@ -67,6 +67,27 @@ class ClientesService {
     const clienteVehiculo = await models.ClienteVehiculo.findByPk(id);
     const rta = await clienteVehiculo.destroy();
     return rta;
+  }
+  async calcular(id){
+    const vehiculo = await models.ClienteVehiculo.findByPk(id);
+    if(!vehiculo){throw boom.notFound("Vehiculo del cliente no encontrado");}
+
+
+    const precio = await models.ServicioValor.findOne({
+      where:{
+        desde: {
+        [Op.gte]: vehiculo.año,
+        },
+        hasta:{
+        [Op.lte]: vehiculo.año
+        },
+        carroceria: vehiculo.carroceria,
+        tipo: vehiculo.tipo
+      }
+    });
+
+    if(!precio){return -1;}
+    return precio;
   }
 }
   module.exports = ClientesService;

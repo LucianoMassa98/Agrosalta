@@ -100,4 +100,17 @@ router.delete('/:operacionId',
   }
 });
 
+//comprobar
+router.get('/:clienteId/:servicioId/clienteVehiculoId',
+validatorHandler(getCompararSchema, 'params'),
+async (req,res,next)=>{
+  try{
+    const{clienteId,servicioId,clienteIdVehiculoId}=req.params;
+  const servicio = await service.comprobar(clienteId,servicioId,clienteIdVehiculoId);
+  res.json(servicio);
+  }catch(err){
+    next(err);
+  }
+});
+
 module.exports=router;
