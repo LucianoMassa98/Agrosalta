@@ -9,19 +9,8 @@ const tipo = joi.string().min(3);
 const createServicioSchema = joi.object({
   nombre: nombre.required(),
 });
-const AddValorServicioSchema = joi.object({
-  servicioId: id.required(),
-  desde: desde.required(),
-  hasta:hasta.required(),
-  valor: valor.required(),
-  carroceria: carroceria.required(),
-  tipo: tipo.required()
 
-});
 
-const SubValorServicioSchema = joi.object({
-  servicioValorId:id.required()
-});
 
 const updateServicioSchema = joi.object({
 
@@ -37,6 +26,4 @@ module.exports = {
   createServicioSchema,
   updateServicioSchema,
   getServicioSchema,
-  AddValorServicioSchema,
-  SubValorServicioSchema
   };
