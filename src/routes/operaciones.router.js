@@ -6,7 +6,8 @@ const  {
   createOperacionSchema,
   updateOperacionSchema,
   getOperacionSchema,
-  queryOperacionSchema
+  queryOperacionSchema,
+  getCompararSchema
   } = require('../schemas/operacion.schema');
 
   const validatorHandler = require('../middlewares/validator.handler');

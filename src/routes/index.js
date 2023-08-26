@@ -8,7 +8,7 @@ const serviciosRouter = require('./servicios.router');
 const operacionesRouter = require('./operaciones.router');
 const movimientosRouter = require('./movimientos.router');
 const loginRouter = require('./login.router');
-const precioRouter = require('./precio.router');
+const precioRouter = require('./precios.router');
 
 function routerApi(app) {
     const router = express.Router();
