@@ -72,14 +72,15 @@ class ClientesService {
     const vehiculo = await models.ClienteVehiculo.findByPk(id);
     if(!vehiculo){throw boom.notFound("Vehiculo del cliente no encontrado");}
 
+    const fechaModelo = new Date(vehiculo.año, 0, 31);
 
     const precio = await models.ServicioValor.findOne({
       where:{
         desde: {
-        [Op.gte]: vehiculo.año,
+        [Op.gte]: fechaModelo
         },
         hasta:{
-        [Op.lte]: vehiculo.año
+        [Op.lte]: fechaModelo
         },
         carroceria: vehiculo.carroceria,
         tipo: vehiculo.tipo

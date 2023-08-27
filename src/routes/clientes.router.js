@@ -30,7 +30,7 @@ router.get('/:clienteId',
 validatorHandler(getClienteSchema, 'params'),
 async (req,res,next)=>{
   try{
-    const{clienteId}=req.params;
+  const{clienteId}=req.params;
   const cliente = await service.findOne(clienteId);
   res.json(cliente);
   }catch(err){
