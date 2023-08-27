@@ -32,7 +32,7 @@ const createOperacionSchema = joi.object({
  cotizacion,
  propuesta,
  poliza,
- endoso,
+ endoso: endoso.required(),
  subrogacion,
  cedulaVerde
 

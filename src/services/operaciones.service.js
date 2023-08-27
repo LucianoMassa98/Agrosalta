@@ -76,13 +76,13 @@ class OperacionesService{
       return rta;
     }
 
-    async comprobar(clienteId,servicioId,clienteIdVehiculoId){
-
-      const operacion = await models.operacion.findOne({
+    async comprobar(clienteId,servicioId,clienteVehiculoId){
+        console.log(clienteId +" -- "+ servicioId+ " -- "+clienteVehiculoId);
+      const operacion = await models.Operacion.findOne({
         where:{
           clienteId: clienteId,
           servicioId: servicioId,
-          clienteIdVehiculoId: clienteIdVehiculoId
+          clienteVehiculoId: clienteVehiculoId
         }
       });
 
