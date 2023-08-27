@@ -57,8 +57,10 @@ class OperacionesService{
     async findOne(id,query){
 
       const options = {
+        include:['servicio','clienteVehiculo']
       }
      
+      
       const ope  = await models.Operacion.findByPk(id,options);
       if(!ope){ throw boom.notFound('Operacion Not Found');}
       return ope;
