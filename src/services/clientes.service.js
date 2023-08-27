@@ -86,7 +86,7 @@ class ClientesService {
       }
     });
 
-    if(!precio){return -1;}
+    if(!precio){ throw boom.notFound("No hay precio disponible para este vehiculo");}
     return precio;
   }
 }

@@ -27,7 +27,6 @@ class Servicio extends Model{
     this.hasMany(models.Operacion, {
       as: 'operaciones',
       foreignKey: 'servicioId'});
-    this.hasMany(models.ServicioValor , { as: 'servicioValor', foreignKey: 'servicioId'});
 
    /* this.hasMany(models.Operacion , {
     as: 'operaciones',

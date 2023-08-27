@@ -3,9 +3,10 @@ const {models} = require('../libs/sequelize');
 
 class PreciosService{
     async create(data){
-
-      const precio = await this.findOne(data);
+      
+      const precio = await this.exists(data);
       if(precio){throw boom.notAcceptable("El precio ya existe");}
+     
       const dat = await models.ServicioValor.create(data);
       if(!dat){throw boom.notFound("No se pudo crear el precio");}
       return dat;
@@ -16,17 +17,21 @@ class PreciosService{
       return precios;
     }
 
-     async findOne(query){
+     async exists(query){
       const precio  = await models.ServicioValor.findOne({where:{
         desde: query.desde,
         hasta: query.hasta,
         carroceria: query.carroceria,
         tipo: query.tipo
       }});
-      if(!precio){ throw boom.notFound('Servicio Not Found');}
+    
       return precio;
     }
-   
+   async findOne(id){
+    const precio = await models.ServicioValor.findByPk(id);
+    if(!precio){throw boom.notFound("No se encontro el precio");}
+    return precio;
+  }
     async update(id, change){
       const servicioValor = await this.findOne(id);
       const rta = await servicioValor.update(change);
