@@ -73,14 +73,14 @@ class ClientesService {
     if(!vehiculo){throw boom.notFound("Vehiculo del cliente no encontrado");}
 
     const fechaModelo = new Date(vehiculo.año, 0, 31);
-
+    console.log(fechaModelo);
     const precio = await models.ServicioValor.findOne({
       where:{
         desde: {
-        [Op.gte]: fechaModelo
+        [Op.lte]: fechaModelo
         },
         hasta:{
-        [Op.lte]: fechaModelo
+        [Op.gte]: fechaModelo
         },
         carroceria: vehiculo.carroceria,
         tipo: vehiculo.tipo
