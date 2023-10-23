@@ -27,7 +27,7 @@ async (req,res,next)=>{
 });
 //find one
 router.get('/:operacionId',
-validatorHandler(queryOperacionSchema, 'query'),
+validatorHandler(ñl , 'query'),
 validatorHandler(getOperacionSchema, 'params'),
 async (req,res,next)=>{
   try{

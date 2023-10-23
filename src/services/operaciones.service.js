@@ -57,7 +57,7 @@ class OperacionesService{
     async findOne(id,query){
 
       const options = {
-        include:['servicio','clienteVehiculo']
+        include:['servicio','clienteVehiculo'],
       }
      
       
